@@ -13,9 +13,14 @@
 		+ History 
 		+ Settings
 		+ Play/Stop Antyradio
-		+ Volume of Antyradio's streaming
+	
+	- Antyradio's streaming
+		+ Volume
+		+ Timeline with posibility to rewind 
 
 	- Layout
+
+	- Threading
 
 	- !                    !
 	- !!				  !!

@@ -1,1 +1,1 @@
-﻿- Too much spaces from json, should be replaced to one space ( ex. "Iron   Maiden" => "Iron Maiden")
+﻿- Too much spaces from json, should be replaced to one space ( ex. "Iron   Maiden" => "Iron Maiden") [Not important]

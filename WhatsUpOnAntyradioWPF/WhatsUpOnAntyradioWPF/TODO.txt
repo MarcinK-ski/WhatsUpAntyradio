@@ -1,0 +1,25 @@
+﻿TO DO:
+	- History:
+		+ TOP song (songs mostly added to db)
+		+ Most recent songs (without duplicates - count only first add)
+		+ Whole history
+
+	- User defined:
+		+ Additional customizable button (undefined = hidden) ex. "I want learn to play on guitar." (other table in DB)
+		+ Settings menu (skipId, jsonURI, index elements', findAtWebsite, etc.)
+		+ Optional (turn on by user) autochecking current song [If it's on, button must be hidden]
+
+	- Menu options:
+		+ History 
+		+ Settings
+		+ Play/Stop Antyradio
+		+ Volume of Antyradio's streaming
+
+	- Layout
+
+	- !                    !
+	- !!				  !!
+	- !!! MOBILE VERSION !!!
+	- !!				  !!
+	- ! 				   !
+

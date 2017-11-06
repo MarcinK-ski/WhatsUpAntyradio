@@ -18,22 +18,20 @@ namespace WhatsUpOnAntyradioWPF
     public partial class MainWindow : Window
     {
         string lastId = ""; //ID from AntyRadio is as string
-        string skipId = "0000000";  //ID which should be skipped
+        const string skipId = "0000000";  //ID which should be skipped
 
-        int jsonMinLength = 15; // JSON string's min length
-        bool debugJsonValue = true;    //Show elements in console
+        const int jsonMinLength = 15; // JSON string's min length
+        const bool debugJsonValue = true;    //Show elements in console
 
-        string jsonURI = "http://rds.eurozet.pl/reader/var/antyradio.json"; //URI to json file
+        const string jsonURI = "http://rds.eurozet.pl/reader/var/antyradio.json"; //URI to json file
         //string jsonURI = "reverse.json";
 
         /*
          * Elements' indexes
          */
-        string id = "id";
-        string artist = "artist";
-        string title = "title";
-
-        string findOnWebsite = "google";    //On which website looking for result (np. youtube/google)
+        const string id = "id";
+        const string artist = "artist";
+        const string title = "title";
 
         bool isRadioPlay = false;
 
@@ -41,8 +39,11 @@ namespace WhatsUpOnAntyradioWPF
         {
             InitializeComponent();
             Errors.Visibility = Visibility.Hidden; //Turn off error message visibility
+
             Artist_ent.IsReadOnly = Song_ent.IsReadOnly = true;
             addToDb_btn.IsEnabled = findGoogle.IsEnabled = findYoutube.IsEnabled = false;
+
+            antyradio.Source = new Uri("http://n-0-9.dcs.redcdn.pl/sc/o2/Eurozet/live/antyradio.livx?audio=5");
         }
 
         private void checkCurrentSong_Click(object sender, RoutedEventArgs e)
@@ -59,11 +60,11 @@ namespace WhatsUpOnAntyradioWPF
             string json = "";
             for (int i = 0; i < splitedJsonTab.Length; i++) //Iterate to get correct json value
             {
-                if (splitedJsonTab[i].Length > this.jsonMinLength) //Correct value is define by minimal length
+                if (splitedJsonTab[i].Length > jsonMinLength) //Correct value is define by minimal length
                 {
                     json += splitedJsonTab[i];
 
-                    if (this.debugJsonValue)
+                    if (debugJsonValue)
                         Console.WriteLine(json);
 
                     if (json[json.Length - 1] == ':')   //If last element, hasn't value (caused by splitting)
@@ -97,41 +98,45 @@ namespace WhatsUpOnAntyradioWPF
             {
                 try
                 {
-                    this.lastId = elements[this.id].ToString();
+                    this.lastId = elements[id].ToString(); //Assign current ID, as last got ID
 
-                    if (this.skipId != this.lastId)
+                    if (skipId != this.lastId)
                     {
-                        string title = "";
-                        string artist = "";
-
-                        string[] title_arr = elements[this.title].Split(',');
-                        string[] artist_arr = elements[this.artist].Split(',');
-
+                        string title_s = "";
+                        string artist_s = "";
+                        
                         //Sometimes, could get "DOORS, The", it should be read reverse, to reach "The DOORS"
-                        if (artist_arr.Length > 1)
+                        string[] title_arr = elements[title].Split(',');
+                        string[] artist_arr = elements[artist].Split(',');
+
+                        if (artist_arr.Length > 1)  //If this situation appeared for artist
                             for (int i = artist_arr.Length - 1; i >= 0; i--)
-                                artist += artist_arr[i].Trim() + " ";
+                                artist_s += artist_arr[i].Trim() + " ";
                         else
-                            artist = elements[this.artist];
+                            artist_s = elements[artist];
 
-                        if (title_arr.Length > 1)
+                        if (title_arr.Length > 1)  //If this situation appeared for title
                             for (int i = title_arr.Length-1; i >= 0; i--)
-                                title += title_arr[i].Trim() + " ";
+                                title_s += title_arr[i].Trim() + " ";
                         else
-                            title = elements[this.title];
+                            title_s = elements[title];
 
 
-                        Song_ent.Text = title;
-                        Artist_ent.Text = artist;
+                        Song_ent.Text = title_s;
+                        Artist_ent.Text = artist_s;
+
+                        //After fill entries, turn on possibility to find in web this song and next songs
                         addToDb_btn.IsEnabled = findGoogle.IsEnabled = findYoutube.IsEnabled = true;
                     }
                     else
                     {
                         Errors.Visibility = Visibility.Visible;
-                        Errors.Content = "Aktualnie radio nie nadaje muzyki.";
+                        Errors.Content = "Brak informacji o tym co leci w radio."
+                                       + " \nSpróbuj ponownie za chwilę, czasem radio nieco później uaktualnia informacje o aktualnym utworze."
+                                       + " \n(Możliwe, że stacja nadaje reklamy, wiadomości lub utwory, których nazwa nie jest udostępniana)";
                     }
                 }
-                catch (KeyNotFoundException ex)
+                catch (JsonWriterException ex)
                 {
                     Console.WriteLine(ex);
                     Errors.Visibility = Visibility.Visible;
@@ -162,6 +167,9 @@ namespace WhatsUpOnAntyradioWPF
 
         }
 
+        /*
+         * Adding result to database
+         */
         private void addToDb_btn_Click(object sender, RoutedEventArgs e)
         {
             Errors.Visibility = Visibility.Hidden;
@@ -221,17 +229,21 @@ namespace WhatsUpOnAntyradioWPF
          */
         private void ctrlRadio_btn_Click(object sender, RoutedEventArgs e)
         {
+            Errors.Visibility = Visibility.Hidden;
+
             if (this.isRadioPlay)  //Radio is on
             {
+                antyradio.Pause();
                 this.isRadioPlay = false;
                 ctrlRadio_btn.Content = "Graj Antyradio!";
-                antyradio.Stop();
+                Errors.Visibility = Visibility.Visible;
+                Errors.Content = "NIC NIE ZATRZYMA ROCK'N'ROLL-a!!! Udało Ci się go jedynie zapauzować \\m/";
             }
-            else    //Radio is off
+            else    //Radio is off / paused
             {
+                antyradio.Play();
                 this.isRadioPlay = true;
                 ctrlRadio_btn.Content = "Zatrzymaj Rock-a";
-                antyradio.Play();
             }
         }
     }

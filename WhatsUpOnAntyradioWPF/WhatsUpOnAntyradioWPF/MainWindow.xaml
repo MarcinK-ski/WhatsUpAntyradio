@@ -7,16 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="583.801">
     <Grid Margin="0,0,2,0">
-        <Label x:Name="Artist_lab" Content="Artysta:" HorizontalAlignment="Left" Margin="8,42,0,0" VerticalAlignment="Top" Height="33"/>
-        <TextBox  x:Name="Artist_ent" HorizontalAlignment="Left" Height="23" Margin="8,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
-        <Button x:Name="checkCurrentSong" Content="Sprawdz aktualny utwór" HorizontalAlignment="Left" Margin="55,125,0,0" VerticalAlignment="Top" Width="282" Click="checkCurrentSong_Click" Height="44"/>
-        <Label x:Name="Song_lab" Content="Tytul:" HorizontalAlignment="Left" Margin="201,42,0,0" VerticalAlignment="Top" Height="28" Width="36"/>
-        <TextBox x:Name="Song_ent" HorizontalAlignment="Left" Height="23" Margin="201,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
+        <Label x:Name="Artist_lab" Content="Artysta:" HorizontalAlignment="Left" Margin="8,95,0,0" VerticalAlignment="Top" Height="33"/>
+        <TextBox  x:Name="Artist_ent" HorizontalAlignment="Left" Height="23" Margin="8,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <Button x:Name="checkCurrentSong" Content="Sprawdz aktualny utwór" HorizontalAlignment="Left" Margin="55,178,0,0" VerticalAlignment="Top" Width="282" Click="checkCurrentSong_Click" Height="44"/>
+        <Label x:Name="Song_lab" Content="Tytul:" HorizontalAlignment="Left" Margin="201,95,0,0" VerticalAlignment="Top" Height="28" Width="36"/>
+        <TextBox x:Name="Song_ent" HorizontalAlignment="Left" Height="23" Margin="201,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
         <Label x:Name="Errors" Content="Errors" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Button x:Name="addToDb_btn" Content="Dodaj do ulubionych" HorizontalAlignment="Left" Margin="431,170,0,0" VerticalAlignment="Top" Width="126" Click="addToDb_btn_Click"/>
-        <Button x:Name="findGoogle" Content="Google" HorizontalAlignment="Left" Margin="431,215,0,0" VerticalAlignment="Top" Width="126" Click="findInWeb_Click"/>
-        <MediaElement x:Name="antyradio" HorizontalAlignment="Left" Height="15" Margin="527,304,0,0" VerticalAlignment="Top" Width="40" Source="http://n-5-10.dcs.redcdn.pl/sc/o2/Eurozet/live/antyradio.livx" LoadedBehavior="Manual"/>
-        <Button x:Name="ctrlRadio_btn" Content="Graj Antyradio!" HorizontalAlignment="Left" Margin="431,42,0,0" VerticalAlignment="Top" Width="126" Tag="" Click="ctrlRadio_btn_Click" Height="56"/>
-        <Button x:Name="findYoutube" Content="Youtube" HorizontalAlignment="Left" Margin="431,255,0,0" VerticalAlignment="Top" Width="126" Click="findInWeb_Click"/>
+        <Button x:Name="addToDb_btn" Content="Dodaj do ulubionych" HorizontalAlignment="Left" Margin="431,183,0,0" VerticalAlignment="Top" Width="126" Click="addToDb_btn_Click"/>
+        <Button x:Name="findGoogle" Content="Google" HorizontalAlignment="Left" Margin="431,228,0,0" VerticalAlignment="Top" Width="126" Click="findInWeb_Click"/>
+        <MediaElement x:Name="antyradio" HorizontalAlignment="Left" Height="15" Margin="527,304,0,0" VerticalAlignment="Top" Width="40" LoadedBehavior="Manual"/>
+        <Button x:Name="ctrlRadio_btn" Content="Graj Antyradio!" HorizontalAlignment="Left" Margin="431,95,0,0" VerticalAlignment="Top" Width="126" Tag="" Click="ctrlRadio_btn_Click" Height="56"/>
+        <Button x:Name="findYoutube" Content="Youtube" HorizontalAlignment="Left" Margin="431,268,0,0" VerticalAlignment="Top" Width="126" Click="findInWeb_Click"/>
     </Grid>
 </Window>

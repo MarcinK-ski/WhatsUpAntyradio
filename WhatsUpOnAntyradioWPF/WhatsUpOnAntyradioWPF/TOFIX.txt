@@ -1,1 +1,9 @@
 ﻿- Too much spaces from json, should be replaced to one space ( ex. "Iron   Maiden" => "Iron Maiden") [Not important]
+ - Audio streaming, not working with some internet speed/providers(?) 
+     * Not working:
+         + Orange (wired) ~15Mbits
+         + Netia (wired) ~11Mbits
+         + Play (mobile) ~33Mbits
+     * Working:
+         + Cyfrowy Polsat (mobile) ~15Mbits
+         + Tmobile (mobile) ~28Mbits

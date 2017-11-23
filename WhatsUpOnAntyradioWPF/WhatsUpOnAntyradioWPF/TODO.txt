@@ -6,6 +6,7 @@
 
 	- User defined:
 		+ Additional customizable button (undefined = hidden) ex. "I want learn to play on guitar." (other table in DB)
+			* After change button, move to history with label button's
 		+ Settings menu (skipId, jsonURI, index elements', findAtWebsite, etc.)
 		+ Optional (turn on by user) autochecking current song [If it's on, button must be hidden]
 

@@ -13,10 +13,19 @@
         <Label x:Name="Song_lab" Content="Tytul:" HorizontalAlignment="Left" Margin="201,95,0,0" VerticalAlignment="Top" Height="28" Width="36"/>
         <TextBox x:Name="Song_ent" HorizontalAlignment="Left" Height="23" Margin="201,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
         <Label x:Name="Errors" Content="Errors" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Button x:Name="addToDb_btn" Content="Dodaj do ulubionych" HorizontalAlignment="Left" Margin="431,183,0,0" VerticalAlignment="Top" Width="126" Click="addToDb_btn_Click"/>
-        <Button x:Name="findGoogle" Content="Google" HorizontalAlignment="Left" Margin="431,228,0,0" VerticalAlignment="Top" Width="126" Click="findInWeb_Click"/>
+        <Button x:Name="addToDb_btn" Content="Dodaj do ulubionych" HorizontalAlignment="Left" Margin="431,163,0,0" VerticalAlignment="Top" Width="126" Click="addToDb_btn_Click"/>
+        <Button x:Name="findGoogle" Content="Google" HorizontalAlignment="Left" Margin="431,237,0,0" VerticalAlignment="Top" Width="126" Click="findInWeb_Click"/>
         <MediaElement x:Name="antyradio" HorizontalAlignment="Left" Height="15" Margin="527,304,0,0" VerticalAlignment="Top" Width="40" LoadedBehavior="Manual"/>
         <Button x:Name="ctrlRadio_btn" Content="Graj Antyradio!" HorizontalAlignment="Left" Margin="431,95,0,0" VerticalAlignment="Top" Width="126" Tag="" Click="ctrlRadio_btn_Click" Height="56"/>
-        <Button x:Name="findYoutube" Content="Youtube" HorizontalAlignment="Left" Margin="431,268,0,0" VerticalAlignment="Top" Width="126" Click="findInWeb_Click"/>
+        <Button x:Name="findYoutube" Content="Youtube" HorizontalAlignment="Left" Margin="431,274,0,0" VerticalAlignment="Top" Width="126" Click="findInWeb_Click"/>
+        <Button x:Name="showHistory_btn" Content="Open history" HorizontalAlignment="Left" Margin="431,202,0,0" VerticalAlignment="Top" Width="126" Click="showHistory_btn_Click"/>
+        <Slider x:Name="volume_slider" HorizontalAlignment="Left" Margin="465,72,0,0" VerticalAlignment="Top" Width="92" ValueChanged="volume_slider_ValueChanged" Maximum="1"/>
+        <Label x:Name="label" Content="Vol:" HorizontalAlignment="Left" Margin="431,69,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.35"/>
+        <Slider x:Name="duration_slider" HorizontalAlignment="Left" Margin="104,289,0,0" VerticalAlignment="Top" Width="294" Maximum="1" ValueChanged="duration_slider_ValueChanged"/>
+        <Label x:Name="label1" Content="Stream search:" HorizontalAlignment="Left" Margin="10,282,0,0" VerticalAlignment="Top" Width="89"/>
+        <Button x:Name="back10sec_btn" Content="-10 sec" HorizontalAlignment="Left" Margin="124,255,0,0" VerticalAlignment="Top" Width="58" Height="29" Click="back10sec_btn_Click" IsEnabled="False"/>
+        <Button x:Name="backToBegin_btn" Content="To begin" HorizontalAlignment="Left" Margin="61,255,0,0" VerticalAlignment="Top" Width="58" Height="29" Click="backToBegin_btn_Click"/>
+        <Button x:Name="next10sec_btn" Content="+10 sec" HorizontalAlignment="Left" Margin="216,255,0,0" VerticalAlignment="Top" Width="58" Height="29" Click="next10sec_btn_Click" IsEnabled="False"/>
+        <Button x:Name="toEnd_btn" Content="To end" HorizontalAlignment="Left" Margin="279,255,0,0" VerticalAlignment="Top" Width="58" Height="29" Click="toEnd_btn_Click" IsEnabled="False"/>
     </Grid>
 </Window>

@@ -1,1 +1,3 @@
 ﻿- Too much spaces from json, should be replaced to one space ( ex. "Iron   Maiden" => "Iron Maiden") [Not important]
+- limit click per 2 seconds on "Add to DB"
+- Fix (+ and - 10 seconds) and (to end)

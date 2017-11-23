@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Net;
 using System.Data.SQLite;
+using System.ComponentModel;
 
 
 namespace WhatsUpOnAntyradioWPF
@@ -34,6 +35,17 @@ namespace WhatsUpOnAntyradioWPF
         const string title = "title";
 
         bool isRadioPlay = false;
+ 
+        TimeSpan skipSeconds = TimeSpan.FromSeconds(10);  //How many seconds changes button click "next"/"back"
+
+        enum controlStreamEvents
+        {
+            BEGIN,
+            BACK,
+            NEXT,
+            END
+        }
+
 
         public MainWindow()
         {
@@ -44,6 +56,8 @@ namespace WhatsUpOnAntyradioWPF
             addToDb_btn.IsEnabled = findGoogle.IsEnabled = findYoutube.IsEnabled = false;
 
             antyradio.Source = new Uri("http://n-0-9.dcs.redcdn.pl/sc/o2/Eurozet/live/antyradio.livx?audio=5");
+
+            volume_slider.Value = antyradio.Volume;
         }
 
         private void checkCurrentSong_Click(object sender, RoutedEventArgs e)
@@ -245,6 +259,73 @@ namespace WhatsUpOnAntyradioWPF
                 this.isRadioPlay = true;
                 ctrlRadio_btn.Content = "Zatrzymaj Rock-a";
             }
+        }
+        
+        private void showHistory_btn_Click(object sender, RoutedEventArgs e)
+        {
+            History win2 = new History();
+            win2.Show();
+        }
+
+        private void volume_slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            double currentVolume = volume_slider.Value;
+            antyradio.Volume = currentVolume;
+            Console.WriteLine(currentVolume);
+        }
+
+        private bool controlStream(controlStreamEvents e)
+        {
+            TimeSpan t;
+
+            switch (e)
+            {
+                case controlStreamEvents.BEGIN:
+                    t = TimeSpan.FromSeconds(0);
+                    break;
+                case controlStreamEvents.BACK:
+                    t = antyradio.Position - skipSeconds;
+                    break;
+                case controlStreamEvents.NEXT:
+                    t = antyradio.Position + skipSeconds;
+                    break;
+                case controlStreamEvents.END:
+                    t = antyradio.Position.Duration();
+                    break;
+                default:
+                    return false;
+            }
+            antyradio.Position = t;
+
+            Console.WriteLine(t);
+            Console.WriteLine(antyradio.Position);
+
+            return true;
+        }
+
+        private void back10sec_btn_Click(object sender, RoutedEventArgs e)
+        {
+            controlStream(controlStreamEvents.BACK);
+        }
+
+        private void next10sec_btn_Click(object sender, RoutedEventArgs e)
+        {
+            controlStream(controlStreamEvents.NEXT);
+        }
+
+        private void backToBegin_btn_Click(object sender, RoutedEventArgs e)
+        {
+            controlStream(controlStreamEvents.BEGIN);
+        }
+
+        private void toEnd_btn_Click(object sender, RoutedEventArgs e)
+        {
+            controlStream(controlStreamEvents.END);
+        }
+
+        private void duration_slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            antyradio.Position = new TimeSpan(0, 0, (int)(duration_slider.Value));
         }
     }
 }

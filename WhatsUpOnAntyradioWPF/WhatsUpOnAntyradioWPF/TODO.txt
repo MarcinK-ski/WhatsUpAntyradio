@@ -16,8 +16,13 @@
 		+ Play/Stop Antyradio
 	
 	- Antyradio's streaming
-		+ Volume
-		+ Timeline with posibility to rewind 
+		+ Timeline with posibility to rewind   
+
+            Console.WriteLine(antyradio.Position.Duration());
+
+            duration_slider.Maximum = (double)antyradio.Position.Duration().TotalSeconds;
+            Console.WriteLine(duration_slider.Maximum);
+
 
 	- Layout
 

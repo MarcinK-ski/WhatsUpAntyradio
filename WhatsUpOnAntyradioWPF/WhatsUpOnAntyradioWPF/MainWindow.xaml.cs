@@ -65,8 +65,20 @@ namespace WhatsUpOnAntyradioWPF
             Errors.Visibility = Visibility.Hidden; //Turn off error message visibility
 
             WebClient webClient = new WebClient();
+            string jsonString;
 
-            string jsonString = webClient.DownloadString(jsonURI);    //Downloading json to string
+            try
+            {
+                Console.WriteLine("Zaraz bede szukac hosta...");
+                jsonString = webClient.DownloadString(jsonURI);    //Downloading json to string
+                Console.WriteLine("Znaleziono hosta i pobrano zawartosc...");
+            }
+            catch (WebException ex)
+            {
+                Errors.Visibility = Visibility.Visible;
+                Errors.Content = "Błąd z połączeniem sieciowym";
+                return;
+            }
 
             char[] excluded = { '}', '{' };    //Excluded chars, to split string
             string[] splitedJsonTab = jsonString.Split(excluded);   //Split json string, by excluded chars
